@@ -1,7 +1,5 @@
 // === JS DOM Scripting By Example Part 3 (Challenge) === //
 
-// Further ideas for this application:
-// Validation: any data a user submits to the app makes sense and doesnt break the app. For example, submitting a blank name lists a blank list item!
 	// * done - Reject blank names
 	// * done - Reject repeated names
 	// * done - Have the "Confirmed" label read Confirm, and change to "Confirmed" once checked (may require looking into text nodes)
@@ -76,15 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 		appendToLi("span", "textContent", text);
 		appendToLi("label", "textContent", "Confirm")
-			.appendChild(createAnElement("input", "type", "radio"));
-		appendToLi("label", "textContent", "Not coming")
-			.appendChild(createAnElement("input", "type", "radio"));
+			.appendChild(createAnElement("input", "type", "checkbox"));
 		appendToLi("textarea", "placeholder", "Notes");
 		appendToLi("button", "textContent", "edit");
 		appendToLi("button", "textContent", "remove");
 		
-		const inputRadios = li.querySelectorAll("input");
-		inputRadios.forEach( () => return inputRadios.name = "")
 		return li;
 	}
 
@@ -136,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const isChecked = checkbox.checked;
 			const label = checkbox.parentNode;
 			const listItem = checkbox.parentNode.parentNode;
-			const labelContent = label.childNodes[0]; // childNodes = [text, input], grabs the text node
+			const labelContent = label.childNodes[0];
 			if (isChecked) {
 				listItem.className = "responded";
 				labelContent.textContent = "Confirmed";
@@ -156,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const nameActions = {
 				remove: () => {
 					const name = li.firstElementChild.textContent;
-					names.splice(names.indexOf(name),1); // removing the name from names array
+					names.splice(names.indexOf(name),1);
 					ul.removeChild(li);
 				},
 				edit: () => {
